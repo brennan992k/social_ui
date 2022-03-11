@@ -79,7 +79,7 @@ class _ConversationState extends State<Conversation> {
           children: <Widget>[
             Flexible(
               child: ListView.builder(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 itemCount: conversation.length,
                 reverse: true,
                 itemBuilder: (BuildContext context, int index) {
