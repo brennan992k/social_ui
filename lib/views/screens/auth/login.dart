@@ -19,7 +19,7 @@ class _LoginState extends State<Login> {
   bool loading = false;
   bool validate = false;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   late String email, password, name = '';
   FocusNode nameFN = FocusNode();
   FocusNode emailFN = FocusNode();
@@ -27,20 +27,19 @@ class _LoginState extends State<Login> {
   FormMode formMode = FormMode.LOGIN;
 
   login() async {
-    FormState? form = formKey.currentState;
-    form!.save();
-    if (!form.validate()) {
-      validate = true;
-      setState(() {});
-      showInSnackBar('Please fix the errors in red before submitting.');
-    } else {
-      Navigate.pushPageReplacement(context, MainScreen());
-    }
+    // FormState? form = formKey.currentState;
+    // form!.save();
+    // if (!form.validate()) {
+    //   validate = true;
+    //   setState(() {});
+    //   showInSnackBar('Please fix the errors in red before submitting.');
+    // } else {
+      Navigate.pushPageReplacement(context, const MainScreen());
+    // }
   }
 
   void showInSnackBar(String value) {
-    _scaffoldKey.currentState!.removeCurrentSnackBar();
-    _scaffoldKey.currentState!.showSnackBar(SnackBar(content: Text(value)));
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value)));
   }
 
   @override
@@ -48,24 +47,21 @@ class _LoginState extends State<Login> {
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       key: _scaffoldKey,
-      body: Container(
-        child: Row(
-          children: [
-            buildLottieContainer(),
-            Expanded(
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 500),
-                child: Center(
-                  child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
-                    child: buildFormContainer(),
-                  ),
+      body: Row(
+        children: [
+          buildLottieContainer(),
+          Expanded(
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 500),
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
+                  child: buildFormContainer(),
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -112,7 +108,7 @@ class _LoginState extends State<Login> {
               const SizedBox(height: 10.0),
               Align(
                 alignment: Alignment.centerRight,
-                child: FlatButton(
+                child: TextButton(
                   onPressed: () {
                     formMode = FormMode.FORGOT_PASSWORD;
                     setState(() {});
@@ -131,7 +127,7 @@ class _LoginState extends State<Login> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text('Don\'t have an account?'),
-              FlatButton(
+              TextButton(
                 onPressed: () {
                   formMode = FormMode.REGISTER;
                   setState(() {});
@@ -147,7 +143,7 @@ class _LoginState extends State<Login> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text('Already have an account?'),
-              FlatButton(
+              TextButton(
                 onPressed: () {
                   formMode = FormMode.LOGIN;
                   setState(() {});
