@@ -46,21 +46,19 @@ class _ProfileState extends State<Profile> {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  FlatButton(
+                  TextButton(
                     child: const Icon(
                       Icons.message,
                       color: Colors.white,
                     ),
-                    color: Colors.grey,
                     onPressed: () {},
                   ),
                   const SizedBox(width: 10),
-                  FlatButton(
+                  TextButton(
                     child: const Icon(
                       Icons.add,
                       color: Colors.white,
                     ),
-                    color: Theme.of(context).accentColor,
                     onPressed: () {},
                   ),
                 ],

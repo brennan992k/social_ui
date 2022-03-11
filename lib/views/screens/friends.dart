@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:social_ui/util/data.dart';
 
 class Friends extends StatefulWidget {
+  const Friends({Key? key}) : super(key: key);
+
   @override
   _FriendsState createState() => _FriendsState();
 }
@@ -11,14 +13,14 @@ class _FriendsState extends State<Friends> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: TextField(
+        title: const TextField(
           decoration: InputDecoration.collapsed(
             hintText: 'Search',
           ),
         ),
         actions: <Widget>[
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.filter_list,
             ),
             onPressed: () {},
@@ -49,28 +51,26 @@ class _FriendsState extends State<Friends> {
                 ),
                 radius: 25,
               ),
-              contentPadding: EdgeInsets.all(0),
+              contentPadding: const EdgeInsets.all(0),
               title: Text(friend['name']),
               subtitle: Text(friend['status']),
               trailing: friend['isAccept']
-                  ? FlatButton(
-                      child: Text(
+                  ? TextButton(
+                      child: const Text(
                         "Unfollow",
                         style: TextStyle(
                           color: Colors.white,
                         ),
                       ),
-                      color: Colors.grey,
                       onPressed: () {},
                     )
-                  : FlatButton(
-                      child: Text(
+                  : TextButton(
+                      child: const Text(
                         "Follow",
                         style: TextStyle(
                           color: Colors.white,
                         ),
                       ),
-                      color: Theme.of(context).accentColor,
                       onPressed: () {},
                     ),
               onTap: () {},
